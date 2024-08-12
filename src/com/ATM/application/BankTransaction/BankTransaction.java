@@ -1,25 +1,39 @@
 package com.ATM.application.BankTransaction;
 
+import java.util.Date;
+
 public class BankTransaction {
+	
+	private String transactionId;
+	private String transactionType;
+	private double amount;
+	private Date date;
 
-	public int getDate() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public BankTransaction(String transactionType, double amount) {
+        this.transactionType = transactionType;
+        this.amount = amount;
+        this.date = new Date();
+        this.transactionId = generateTransactionId();
+    }
 
-	public int getAmount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    private String generateTransactionId() {
+        return "TXN" + System.currentTimeMillis();
+    }
 
-	public int getTransactionType() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    public String getTransactionId() {
+        return transactionId;
+    }
 
-	public String getTransactionId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public String getTransactionType() {
+        return transactionType;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public Date getDate() {
+        return date;
+    }
 
 }

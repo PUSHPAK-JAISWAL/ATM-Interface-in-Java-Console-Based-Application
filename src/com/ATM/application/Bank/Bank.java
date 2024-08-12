@@ -14,7 +14,7 @@ public class Bank {
 	}
 	
 	public void addAccountHolder(AccountHolder accountHolder) {
-		accountHolder.put(accountHolder.getUserId(),accountHolder);
+		accountHolders.put(accountHolder.getUserId(),accountHolder);
 	}
 	
 	public AccountHolder findAccountHolder(String userId) {

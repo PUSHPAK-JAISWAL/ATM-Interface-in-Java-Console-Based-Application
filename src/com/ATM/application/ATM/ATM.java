@@ -16,24 +16,24 @@ public class ATM {
 		this.bank = bank;
 	}
 
-	public void start() {
-		// TODO Auto-generated method stub
-		Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("Enter User ID: ");
-		String userId = scanner.nextLine();
-		
-		System.out.println("Enter PIN: ");
-		String userPin = scanner.nextLine();
-		
-		if(bank.authenticateUser(userId, userPin)) {
-			AccountHolder accountHolder = bank.findAccountHolder(userId);
-			showMenu(accountHolder);
-		}
-		else {
-			System.out.println("Invalid User ID or PIN");
-		}
-	}
+//	public void start() {
+//		// TODO Auto-generated method stub
+//		Scanner scanner = new Scanner(System.in);
+//		
+//		System.out.println("Enter User ID: ");
+//		String userId = scanner.nextLine();
+//		
+//		System.out.println("Enter PIN: ");
+//		String userPin = scanner.nextLine();
+//		
+//		if(bank.authenticateUser(userId, userPin)) {
+//			AccountHolder accountHolder = bank.findAccountHolder(userId);
+//			showMenu(accountHolder);
+//		}
+//		else {
+//			System.out.println("Invalid User ID or PIN");
+//		}
+//	}
 
 	private void showMenu(AccountHolder accountHolder) {
 		// TODO Auto-generated method stub
@@ -127,5 +127,66 @@ public class ATM {
                                transaction.getDate());
         }
 	}
+	
+	public void start() {
+	    Scanner scanner = new Scanner(System.in);
+
+	    System.out.println("ATM System");
+	    System.out.println("1. Login");
+	    System.out.println("2. Create a New Account");
+
+	    System.out.print("Enter choice: ");
+	    int choice = scanner.nextInt();
+	    scanner.nextLine();  // Consume newline
+
+	    if (choice == 1) {
+	        login();
+	    } else if (choice == 2) {
+	        createAccount();
+	    } else {
+	        System.out.println("Invalid choice.");
+	    }
+	}
+
+	private void login() {
+	    Scanner scanner = new Scanner(System.in);
+
+	    System.out.print("Enter User ID: ");
+	    String userId = scanner.nextLine();
+
+	    System.out.print("Enter PIN: ");
+	    String userPin = scanner.nextLine();
+
+	    if (bank.authenticateUser(userId, userPin)) {
+	        AccountHolder accountHolder = bank.findAccountHolder(userId);
+	        showMenu(accountHolder);
+	    } else {
+	        System.out.println("Invalid User ID or PIN.");
+	    }
+	}
+
+	private void createAccount() {
+	    Scanner scanner = new Scanner(System.in);
+
+	    System.out.print("Enter your name: ");
+	    String name = scanner.nextLine();
+
+	    System.out.print("Create a User ID: ");
+	    String userId = scanner.nextLine();
+
+	    System.out.print("Create a PIN: ");
+	    String userPin = scanner.nextLine();
+
+	    System.out.print("Enter initial deposit amount: ");
+	    double initialDeposit = scanner.nextDouble();
+
+	    String accountNumber = "ACCT" + System.currentTimeMillis(); // Generate a unique account number
+	    Account newAccount = new Account(accountNumber, initialDeposit);
+	    AccountHolder newAccountHolder = new AccountHolder(userId, userPin, name, newAccount);
+
+	    bank.addAccountHolder(newAccountHolder);
+	    System.out.println("Account created successfully! You can now log in.");
+	}
+
 
 }

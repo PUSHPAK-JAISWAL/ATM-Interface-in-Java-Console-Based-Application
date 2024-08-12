@@ -3,25 +3,33 @@ package com.ATM.application.AccountHolder;
 import com.ATM.application.Account.Account;
 
 public class AccountHolder {
-
-	public void put(Object object, AccountHolder accountHolder) {
-		// TODO Auto-generated method stub
-		
+	
+	private String userId;
+	private String userPin;
+	private String name;
+	private Account account;
+	
+	public AccountHolder(String userId,String userPin,String name,Account account) {
+		this.userId = userId;
+		this.userPin = userPin;
+		this.name = name;
+		this.account = account;
 	}
 
-	public Object getUserId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public String getUserId() {
+        return userId;
+    }
 
-	public Object getUserPin() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public String getUserPin() {
+        return userPin;
+    }
 
-	public Account getAccount() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public String getName() {
+        return name;
+    }
 
+    public Account getAccount() {
+        return account;
+    }
+	
 }
